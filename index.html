@@ -22,9 +22,7 @@
 
 
 
-<body>
-    <h1>Data Visualization: Titanic</h1>
-    
+<body>    
     <div class="hero-image">
         <div class="hero-text">
             <header>Visualization Mini-Project</header>
@@ -81,6 +79,7 @@
 
 
             var svg = dimple.newSvg("body", 1000, 600);
+            svg.attr("class", "chart");
             var myChart = new dimple.chart(svg, data);
 
             var category = d3.select("#option_1").node().value; 
@@ -170,7 +169,7 @@
 
 
         function updateChart() {
-            d3.select("svg").remove();
+            d3.select(".chart").remove();
             d3.select("h3").remove();
             d3.csv( "titanic passenger list (2).csv", draw );
         };
