@@ -1,18 +1,9 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
->>>>>>> 6474a404b56c44dd7df75dc2fa4bcfe2e2e1a77d
-=======
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
     <head>
         <meta charset="utf-8">
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
-<<<<<<< HEAD
-<<<<<<< HEAD
         <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Six+Caps&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
@@ -21,43 +12,10 @@
 <body>
 
      <div class="hero-image">
-=======
-
-    
-        <style type="text/css">
-            h1,
-            h2 {
-                text-align: center;
-            }
-    
-            userselection {
-                margin-top: 180px;
-                float: left;
-            }
-        </style>
-=======
-        <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Six+Caps&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="style.css">
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
-    </head>
-    
-
-<body>
-
-<<<<<<< HEAD
-    <div class="hero-image">
->>>>>>> 6474a404b56c44dd7df75dc2fa4bcfe2e2e1a77d
-=======
-     <div class="hero-image">
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
         <div class="hero-text">
             <header>Titanic: Sink or Swim?</header>
         </div>
     </div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
         <nav>
             <ul>
                 <li>
@@ -108,39 +66,6 @@
             </div>
             <div class="zoomcircles"> </div>
     </section>
-<<<<<<< HEAD
-=======
-    <p>Learn more about the project  
-        <a href="about.html">here</a>.
-    </p>
-    
-    <div class="image-test">
-        <button>Reset</button>
-    </div>
-    <h1>Data Visualization: Titanic</h1>
-
-
-    <userselection>
-        Category
-        <br>
-        <select id="option_1" class="input" name="category" size="3">
-            <option value="none" selected>None</option>
-            <option value="sex">by Sex</option>
-            <option value="age">by Age</option>
-        </select>
-        <br>
-        <br>
-        Measure
-        <br>
-        <select id="option_2" class="input" name="measure" size="2">
-            <option value="percentage" selected>Percentage</option>
-            <option value="count">Count</option>
-        </select>
-    </userselection>
-
->>>>>>> 6474a404b56c44dd7df75dc2fa4bcfe2e2e1a77d
-=======
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
 
     <script type="text/javascript">
         function draw(data) {
@@ -153,15 +78,7 @@
 
 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
             var svg = dimple.newSvg(".myChart", 1000, 600);
-=======
-            var svg = dimple.newSvg("body", 1000, 600);
->>>>>>> 6474a404b56c44dd7df75dc2fa4bcfe2e2e1a77d
-=======
-            var svg = dimple.newSvg(".myChart", 1000, 600);
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
             svg.attr("class", "chart");
             var myChart = new dimple.chart(svg, data);
 
@@ -231,15 +148,9 @@
                         width: parseFloat(myShape.attr("width")),
                         height: parseFloat(myShape.attr("height"))
                     };
-<<<<<<< HEAD
 
 
 
-=======
-
-
-
->>>>>>> 6474a404b56c44dd7df75dc2fa4bcfe2e2e1a77d
                 svg.append("text")
                     .attr("x", rect.x + rect.width / 2)
                     .attr("y", myChart._heightPixels() + 50)
@@ -262,27 +173,9 @@
             d3.csv("titanic passenger list (2).csv", draw);
         };
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 6474a404b56c44dd7df75dc2fa4bcfe2e2e1a77d
-=======
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
         d3.selectAll(".input").on("click", updateChart);
         d3.csv("titanic passenger list (2).csv", draw); 
     </script>
 </body>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 </html>
-
-=======
-</html>
->>>>>>> 6474a404b56c44dd7df75dc2fa4bcfe2e2e1a77d
-=======
-</html>
->>>>>>> b102411af4dfd9f77e7a43040336dec487ef7ec8
