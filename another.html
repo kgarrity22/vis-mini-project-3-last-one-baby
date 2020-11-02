@@ -46,7 +46,7 @@ function createSymbolChart(data) {
 
             var bbox, viewBox, vx, vy, vw, vh, defaultView;
 
-            var clickScale = 2.0;		// scale used when circle is clicked
+            var clickScale = 25.0;		// scale used when circle is clicked
             d3.select("button").on("click", reset);
 
             // circle = container.append("g")
@@ -308,7 +308,7 @@ function createSymbolChart(data) {
                 console.log("here: ", transform.scale)
                 container.transition().duration(1000)
 
-                    .attr("transform", "translate(" + [10, 10] + ")scale(" + 1.0 + ")");
+                    .attr("transform", "translate(" + [100, 100] + ")scale(" + 1.0 + ")");
                 console.log("container: ", container)
 
                 zoom.scale(scale)
