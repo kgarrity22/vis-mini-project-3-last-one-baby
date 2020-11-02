@@ -18,7 +18,23 @@
             console.log("DATA: ", data)
             createSymbolChart(data)
 
+        // d3.selectAll('circle')
+        //      .on('click', function (d, i) {
+        //          d3.select(this)
+        //              .style('fill', 'orange');
+        //      });
+        // d3.selectAll('circle')
+        // .on("mouseover", function(d, i){
+        //     d3.select(this)
+        //     .append("text")
+        //     .style("fill", "gray")
+        // })
+        var selected = d3.selectAll("#selected")
+        .append("text")
+        .text("oooo")
+        .attr("fill", "white")
 
+        console.log("selected: ", selected)
 
         })// end of csv call
 
@@ -32,7 +48,7 @@ function createSymbolChart(data) {
             var zoom = d3.behavior.zoom()
                 .scale(scale)
                 .scaleExtent([1, 5])
-                .on("zoom", zoomed);
+                // .on("zoom", zoomed);
 
             var svg = d3.select("body").append("svg")
                 .attr("width", width)
@@ -46,7 +62,7 @@ function createSymbolChart(data) {
 
             var bbox, viewBox, vx, vy, vw, vh, defaultView;
 
-            var clickScale = 25.0;		// scale used when circle is clicked
+            var clickScale = 33.0;		// scale used when circle is clicked
             d3.select("button").on("click", reset);
 
             // circle = container.append("g")
@@ -232,7 +248,6 @@ function createSymbolChart(data) {
                     }
                 })
                 .attr("r", 8)
-                
                 .attr("fill", function (d) {
                     if (d.pclass == "1") {
                         return "gold"
@@ -248,8 +263,32 @@ function createSymbolChart(data) {
                     }
                 })
                 .on("click", clicked)
+                .on("mouseover", function(d){
+                    console.log("over: ", d)
+                    d3.select()
 
-            bbox = container.node().getBBox();
+                })
+        d3.selectAll('g.item')
+        .append('text')
+        .text(function (d, i) {
+            return i + 1;
+        });
+            
+        dots.append("text")
+        .text(function (d) {
+            //console.log("appending text", d)
+            return d.pclass
+        })
+        .attr("x", function (d, i) {
+            10 * i;
+        })
+        .attr("y", function (d, i) {
+            10 * i;
+        })
+        .attr("fill", "white")
+                
+
+    bbox = container.node().getBBox();
     vx = bbox.x;		// container x co-ordinate
     vy = bbox.y;		// container y co-ordinate
     vw = bbox.width;	// container width
@@ -272,12 +311,20 @@ function createSymbolChart(data) {
             }
 
             function clicked(d, i) {
+                
+
                 if (d3.event.defaultPrevented) {
                     return; // panning, not clicking
                 }
 
                 node = d3.select(this);
+                console.log("node0: ", node[0][0])
                 console.log(node)
+                var circle = node[0][0]
+                d3.select(circle)
+                    .attr("id", "selected")
+                console.log("HERE: ", circle)
+                // circle.attr("id", "selected")
                 var transform = getTransform(node, clickScale);
                 console.log(transform)
                 container.transition().duration(1000)
@@ -287,6 +334,23 @@ function createSymbolChart(data) {
                     .translate(transform.translate);
                 console.log("zoom: ", zoom)
                 scale = transform.scale;
+                
+                console.log("D in clicked: ", d)
+
+                d3.selectAll("#selected")
+                    .append("text")
+                    .attr("x", 100)
+                    .attr("y", 100)
+                    .text("YAY!")
+                    .attr("font-size", 40)
+                    .attr("fill", "white")
+                // d3.selectAll(".selected")
+                //     .append("text")
+                //     .attr('x', 10)
+                //     .attr('y', 10)
+                    
+                //     .text("Income")
+                //     .sytle("font-size", 8)
             }
 
 
@@ -308,7 +372,7 @@ function createSymbolChart(data) {
                 console.log("here: ", transform.scale)
                 container.transition().duration(1000)
 
-                    .attr("transform", "translate(" + [100, 100] + ")scale(" + 1.0 + ")");
+                    .attr("transform", "translate(" + [0, 0] + ")scale(" + 1.0 + ")");
                 console.log("container: ", container)
 
                 zoom.scale(scale)
