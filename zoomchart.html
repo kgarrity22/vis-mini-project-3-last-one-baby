@@ -400,6 +400,7 @@
             .on("click", clicked)
             .on("mouseover", function (d) {
                 console.log("over: ", d)
+                
                 d3.select(this).attr("fill","MediumSlateBlue")
                 div.transition()
                     .duration(200)
@@ -409,6 +410,17 @@
                 // .style("top", (d3.event.pageY - 28) + "px");	
             })
             .on("mouseout", function (d) {
+                d3.select(this).attr("fill", function(d){
+                    if (d.pclass==1){
+                        return "gold"
+                    }
+                    else if (d.pclass == 2) {
+                        return "lightblue"
+                    }
+                    else if (d.pclass == 3) {
+                        return "pink"
+                    }
+                })
                 // var color = d3.select(this).attr("fill",)
                 div.transition()
                     .duration(500)
