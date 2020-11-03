@@ -97,7 +97,9 @@
                     <button>Reset</button>
                 </div>
                 <div class="zoomcircles"> </div>
-                <div class="tooltip"></div>
+                <div class="tooltip">
+                    <span class="tooltiptext"></span>
+                </div>
         </div>
             
     </section>
@@ -343,7 +345,7 @@
             //     .selectAll("circle")
             //     .data(circles)
 
-            var div = d3.select(".tooltip").append("div")	
+            var div = d3.select(".tooltiptext").append("div")	
             .attr("class", "tooltip")				
             .style("opacity", 0);
 
@@ -629,20 +631,7 @@
 
                 console.log("D in clicked: ", d)
 
-                // d3.selectAll("#selected")
-                //     .append("text")
-                //     .attr("cx", 100)
-                //     .attr("cy", 100)
-                //     .text("YAY!")
-                //     .attr("font-size", 40)
-                //     .attr("fill", "white")
-                // d3.selectAll(".selected")
-                //     .append("text")
-                //     .attr('x', 10)
-                //     .attr('y', 10)
-
-                //     .text("Income")
-                //     .sytle("font-size", 8)
+    
             }
 
 
@@ -671,8 +660,6 @@
                 zoom.scale(scale)
                     .translate([0, 0])
                     .translate([height, height]);
-
-
             }
             
         }// end of create Symbol Chart
