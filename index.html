@@ -201,16 +201,6 @@
 
         };
 
-
-
-        function updateChart() {
-            d3.select(".chart").remove();
-            d3.select("h3").remove();
-            d3.csv("titanic passenger list (2).csv", draw);
-        };
-
-        d3.selectAll(".input").on("click", updateChart);
-        d3.csv("titanic passenger list (2).csv", draw); 
     
 
         d3.csv("titanic passenger list (2).csv", data => {
@@ -321,8 +311,8 @@
                 .duration(1000)
                 .remove()
 
-            // d3.select("svg")
-            //     .remove()
+            d3.select("svg")
+                .remove()
 
             var height = 600;
             var width = 1000;
@@ -667,17 +657,25 @@
 
                 console.log("here: ", transform.scale)
                 container.transition().duration(1000)
-
-                    .attr("transform", "translate(" + [0, 0] + ")scale(" + 1.0 + ")");
+                    .attr("transform", "translate(" + [height, height] + ")scale(" + 1.0 + ")");
                 console.log("container: ", container)
 
                 zoom.scale(scale)
-                    .translate([0, 0]);
+                    .translate([height, height]);
 
 
             }
 
         }// end of create Symbol Chart
+
+        function updateChart() {
+                d3.select(".chart").remove();
+                d3.select("h3").remove();
+                d3.csv("titanic passenger list (2).csv", draw);
+            };
+
+            d3.selectAll(".input").on("click", updateChart);
+            d3.csv("titanic passenger list (2).csv", draw); 
 </script>
 
 </body>
