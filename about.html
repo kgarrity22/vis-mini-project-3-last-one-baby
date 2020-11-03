@@ -26,17 +26,35 @@
                     interaction techniques, takeaways, etc.</li>
                 <li>A brief info about the design and development process: alternatives tried (e.g., sketches),
                     struggles, lessoned learned. Also mention how the workload was distributed among team members.</li>
+                    <h3>Motivations, Encoding Decisions, and Interactions</h3>
                     <p>
                         Everyone is familiar with the historic sinking of the Titanic, the luxury cruiseliner that never completed its 
                         maiden voyage after colliding with an iceberg the morning of April 15, 1912. The goal of this project was 
                         to determine what types of individuals, based on their demographic information, were more likely to have survived 
                         the tragedy. Our visualization seeks to express not only the scale of the disaster, captured through 
                         aggregate data such as sex, class, and age, but also the toll of the disaster at the idividual level, manifested 
-                        in the circles that represent specific passengers. 
+                        in the point marks that represent specific passengers. 
                         <br><br>
-                        Some of the visual econding decisions were easy, such as opting to use the color channel of red to denote those 
-                        who lost their life.  
-
+                        Some of the visual econding decisions were easy, such as opting to use the color channel of red within the stacked 
+                        bar chart to denote those who lost their life. We also decided to use the color channel of gold in the representation of 
+                        circles to denote first class passengers. This choice takes advantage of our society's learned disposition to associate
+                        gold with status, and should be obvious to any viewer. Using different colors for each class respectively was the cleanest 
+                        way to encode the categorical attribute of class into the point marks. Further, we also used the points' position, a magnitudal 
+                        channel, to keep points of of the same class clustered together so that it would be easier to visually compare the raw number 
+                        of indivudals who meet the criteria selected by the user. 
+                        <br><br>
+                        Speaking of the user, our interaction techniques were designed to let the user view the data at both a macro and granular 
+                        level. The user can combine selections however they want to see stacked bar charts that visualize the raw total or percentage of 
+                        passengers who survived or perished, always broken down by class but then drilled down further by sex or age. For further information 
+                        on specific total counts or proportions, a user need only hover their mouse over a bar to activate a tooltip with this more specific 
+                        information. This same type of flexibility is featured in the points plot where users can decide how they want to filter the plot, and 
+                        then immediately see the change in results. By clicking on specific points, users can learn more about the individuals in the dataset. 
+                        Zoomed in, they can see a particular passenger's name, their age, and whether or not they had a family member on board.
+                    </p>
+                    <h3>Takeaways</h3>
+                    <p>
+                        Unsurprisingly, the proportion and raw number of those who perished was related to their class; the highest number of victims were 
+                        in third class, while the fewest were in first. 
                     </p>
             </div>
         </div>
