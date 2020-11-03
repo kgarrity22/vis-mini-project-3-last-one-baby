@@ -174,7 +174,7 @@ function createSymbolChart(data) {
                 .scaleExtent([1, 5])
                 // .on("zoom", zoomed);
 
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select(".zoomcircles").append("svg")
                 .attr("width", width)
                 .attr("height", height)
                 .call(zoom);
