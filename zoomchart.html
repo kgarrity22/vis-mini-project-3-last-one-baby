@@ -400,6 +400,7 @@
             .on("click", clicked)
             .on("mouseover", function (d) {
                 console.log("over: ", d)
+                d3.select(this).attr("fill","MediumSlateBlue")
                 div.transition()
                     .duration(200)
                     .style("opacity", .9);
@@ -408,6 +409,7 @@
                 // .style("top", (d3.event.pageY - 28) + "px");	
             })
             .on("mouseout", function (d) {
+                // var color = d3.select(this).attr("fill",)
                 div.transition()
                     .duration(500)
                     .style("opacity", 0);
