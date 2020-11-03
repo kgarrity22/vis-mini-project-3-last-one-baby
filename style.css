@@ -120,11 +120,13 @@ display: flex;
   font-family:"Cairo-Black";
 }
 .bigbox1{
-  margin-top: 30px;
+  margin-top: 50px;
+  border-style: double;
 }
 .bigbox2{
   margin-top: 30px;
   justify-content: center;
+  border-style: double;
 }
 .box1 {
   justify-content: center;

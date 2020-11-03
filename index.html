@@ -7,7 +7,6 @@
         <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Six+Caps&display=swap" rel="stylesheet">
         <script src="//d3js.org/d3.v3.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-
         <link rel="stylesheet" href="style.css">
     </head>
     
@@ -63,7 +62,14 @@
 
         <div class="bigbox2">
             <h1>Zoom Chart</h1>
-
+            <table>
+                <tbody>
+                  <tr>
+                    <td>Name</td>
+                    <td><span class="name"></span></td>
+                  </tr>
+                </tbody>
+              </table>
             <div class="filters">
                 <label for="gender">Filter by gender:</label>
                 <select name="gender" id="gender">
@@ -91,6 +97,7 @@
                     <button>Reset</button>
                 </div>
                 <div class="zoomcircles"> </div>
+                <div class="tooltip"></div>
         </div>
             
     </section>
@@ -222,9 +229,6 @@
             let agetype = document.querySelector("#age")
 
 
-
-
-
             d3.select('#gender')
                 .on("change", function (d) {
                     let gendertype = document.querySelector("#gender").value
@@ -278,9 +282,6 @@
                     })
                     createSymbolChart(newdata);
                 });
-
-
-
 
 
             d3.select("#sort-btn")
@@ -342,7 +343,9 @@
             //     .selectAll("circle")
             //     .data(circles)
 
-
+            var div = d3.select(".tooltip").append("div")	
+            .attr("class", "tooltip")				
+            .style("opacity", 0);
 
             var dots = container.append("g")
                 .attr("id", "circles")
@@ -537,34 +540,38 @@
                 .on("click", clicked)
                 .on("mouseover", function (d) {
                     console.log("over: ", d)
-                    d3.select(this[1])
-                    .innerHTML("text")
-                    
-
-                    console.log(d3.select(this))
+                    div.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    div.html(d.name + "<br/>" + d.sex)
+                    // .style("left", (d3.event.pageX) + "px")		
+                    // .style("top", (d3.event.pageY - 28) + "px");	
+                })
+                .on("mouseout", function (d) {
+                    div.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                });
                 
-                    
+            d3.selectAll('g.item')
+                .append('text')
+                .text(function (d, i) {
+                    return i + 1;
+                });
 
-                })
-            // d3.selectAll('g')
-            //     .append('text')
-            //     .text(function (d, i) {
-            //         return "Hey!"
-            //     });
-
-            dots.selectAll("#selected")
-                .append("text")
-                .text(function (d) {
-                    //console.log("appending text", d)
-                    return d.pclass
-                })
-                .attr("x", function (d, i) {
-                    i*20;
-                })
-                .attr("y", function (d, i) {
-                    10*i;
-                })
-                .attr("fill", "white")
+            // dots.append("text")
+            
+            //     .text(function (d) {
+            //         //console.log("appending text", d)
+            //         return d.pclass
+            //     })
+            //     .attr("cx", function (d, i) {
+            //         10 * i;
+            //     })
+            //     .attr("cy", function (d, i) {
+            //         10 * i;
+            //     })
+            //     .attr("fill", "black")
 
 
             bbox = container.node().getBBox();
@@ -596,20 +603,17 @@
                 //     return; // panning, not clicking
                 // }
 
-
-
-
                 node = d3.select(this);
                 console.log("node0: ", node[0][0])
                 console.log(node)
                 var circle = node[0][0]
                 d3.select(circle)
                     .attr("id", "selected")
+                    .attr("fill", "MediumSlateBlue")
                 d3.selectAll("#selected")
-                    .append("text")
-                    .text("YAY!")
-                    .attr("font-size", 40)
-                    .attr("fill", "white")
+                .append("circle")
+                
+                					
 
                 console.log("HERE: ", circle)
                 // circle.attr("id", "selected")
@@ -625,13 +629,13 @@
 
                 console.log("D in clicked: ", d)
 
-                d3.selectAll("#selected")
-                    .append("text")
-                    .attr("x", 100)
-                    .attr("y", 100)
-                    .text("YAY!")
-                    .attr("font-size", 40)
-                    .attr("fill", "white")
+                // d3.selectAll("#selected")
+                //     .append("text")
+                //     .attr("cx", 100)
+                //     .attr("cy", 100)
+                //     .text("YAY!")
+                //     .attr("font-size", 40)
+                //     .attr("fill", "white")
                 // d3.selectAll(".selected")
                 //     .append("text")
                 //     .attr('x', 10)
@@ -665,11 +669,12 @@
                 console.log("container: ", container)
 
                 zoom.scale(scale)
+                    .translate([0, 0])
                     .translate([height, height]);
 
 
             }
-
+            
         }// end of create Symbol Chart
 
         function updateChart() {
