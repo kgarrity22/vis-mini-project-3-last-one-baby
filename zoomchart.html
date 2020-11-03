@@ -94,14 +94,15 @@
                 let gendertype = document.querySelector("#gender").value
                 console.log("gender: ", gendertype)
                 var newdata = data.filter(function (d) {
-                    //console.log("d in filter: ", d)
-                    if (d.sex == gendertype) {
+                    console.log("d in filter: ", d)
+                    if (d.sex.toLowerCase() == gendertype) {
+                        console.log("d: ", d)
                         return d;
                     } else if (gendertype == "") {
                         return d;
                     }
                 })
-                //console.log("DATA NEW: ", newdata)
+                console.log("DATA NEW: ", newdata)
                 createSymbolChart(newdata);
             });
 
@@ -524,14 +525,14 @@
         
     }// end of create Symbol Chart
 
-    function updateChart() {
-            d3.select(".chart").remove();
-            d3.select("h3").remove();
-            d3.csv("titanic passenger list (2).csv", draw);
-        };
+    // function updateChart() {
+    //         d3.select(".chart").remove();
+    //         d3.select("h3").remove();
+    //         d3.csv("titanic passenger list (2).csv", draw);
+    //     };
 
-        d3.selectAll(".input").on("click", updateChart);
-        d3.csv("titanic passenger list (2).csv", draw); 
+    //     d3.selectAll(".input").on("click", updateChart);
+    //     d3.csv("titanic passenger list (2).csv", draw); 
 </script>
 
 
