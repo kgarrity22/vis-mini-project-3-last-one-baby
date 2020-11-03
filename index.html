@@ -5,10 +5,8 @@
         <script src="https://d3js.org/d3.v4.min.js"></script>
         <script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
         <link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Six+Caps&display=swap" rel="stylesheet">
-
         <script src="//d3js.org/d3.v3.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
-        
 
         <link rel="stylesheet" href="style.css">
     </head>
@@ -36,8 +34,8 @@
         </nav>
     <br>
     <section id="bars">
-        <h1 class="title">Stacked Bar Charts</h1>
-        <div>
+        <div class="bigbox1">
+            <h1>Stacked Bar Chart</h1>
             <div class="myChart"> </div>
             <div class="box1">
                 <div class="insidebox">
@@ -58,46 +56,45 @@
                         <option value="count">Count</option>
                     </select>  
                 </div>       
-            </div>
-            
-            
         </div>
+
     </section>
     <section id="zoom">
-        
-        <h1 class="title">Zoom Chart</h1>
+
+        <div class="bigbox2">
+            <h1>Zoom Chart</h1>
+
+            <div class="filters">
+                <label for="gender">Filter by gender:</label>
+                <select name="gender" id="gender">
+                    <option></option>
+                    <option value="female">Female</option>
+                    <option value="male">Male</option>
+                </select>
             
-            <div class="zoomcircles"> </div>
+                <label for="age">Filter by age:</label>
+            
+                <select name="age" id="age">
+                    <option></option>
+                    <option value="Over 30">Over 30</option>
+                    <option value="30 and under">30 and under</option>
+                </select>
+            
+                <label for="survived">Filter by survival:</label>
+            
+                <select name="survived" id="survived">
+                    <option></option>
+                    <option value="yes">Survived</option>
+                    <option value="no">Did not survive</option>
+                </select>
+                <div class="image-test">
+                    <button>Reset</button>
+                </div>
+                <div class="zoomcircles"> </div>
+        </div>
+            
     </section>
 
-    <div class="">
-        <label for="gender">Filter by gender:</label>
-        <select name="gender" id="gender">
-            <option></option>
-            <option value="female">Female</option>
-            <option value="male">Male</option>
-        </select>
-    
-        <label for="age">Filter by age:</label>
-    
-        <select name="age" id="age">
-            <option></option>
-            <option value="Over 30">Over 30</option>
-            <option value="30 and under">30 and under</option>
-        </select>
-    
-        <label for="survived">Filter by survival:</label>
-    
-        <select name="survived" id="survived">
-            <option></option>
-            <option value="yes">Survived</option>
-            <option value="no">Did not survive</option>
-        </select>
-        <div class="image-test">
-            <button>Reset</button>
-        </div>
-    
-    </div>
     
     
     
@@ -333,7 +330,7 @@
                 .scaleExtent([1, 5])
             // .on("zoom", zoomed);
 
-            var svg = d3.select("body").append("svg")
+            var svg = d3.select(".zoomcircles").append("svg")
                 .attr("width", width)
                 .attr("height", height)
                 .attr("margin-left", 200)

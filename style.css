@@ -119,6 +119,13 @@ display: flex;
   padding: 2px;
   font-family:"Cairo-Black";
 }
+.bigbox1{
+  margin-top: 30px;
+}
+.bigbox2{
+  margin-top: 30px;
+  justify-content: center;
+}
 .box1 {
   justify-content: center;
   margin-left: 10px;
@@ -127,7 +134,9 @@ display: flex;
   flex-direction: row;
 
 }
-
+.filters{
+  justify-content: center;
+}
 .insidebox{
   margin-right: 20px;
 }
