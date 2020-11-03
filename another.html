@@ -1,10 +1,44 @@
 <script src="//d3js.org/d3.v3.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
 <link rel="stylesheet" href="style.css">
+
+
+
 <div class="hero-image">
     <div class="hero-text">
         <header>Visualization Mini-Project</header>
     </div>
 </div>
+
+
+<div class="">
+    <label for="gender">Filter by gender:</label>
+    <select name="gender" id="gender">
+        <option></option>
+        <option value="female">Female</option>
+        <option value="male">Male</option>
+    </select>
+
+    <label for="age">Filter by age:</label>
+    
+    <select name="age" id="age">
+        <option></option>
+        <option value="Over 30">Over 30</option>
+        <option value="30 and under">30 and under</option>
+    </select>
+
+    <label for="survived">Filter by survival:</label>
+    
+    <select name="survived" id="survived">
+        <option></option>
+        <option value="yes">Survived</option>
+        <option value="no">Did not survive</option>
+    </select>
+
+</div>
+    
+
+
 
 <div class="image-test">
     <button>Reset</button>
@@ -15,8 +49,8 @@
 
      d3.csv("titanic passenger list (2).csv", data => {
 
-            console.log("DATA: ", data)
-            createSymbolChart(data)
+        //console.log("DATA: ", data)
+        createSymbolChart(data)
 
         // d3.selectAll('circle')
         //      .on('click', function (d, i) {
@@ -29,10 +63,84 @@
         //     .append("text")
         //     .style("fill", "gray")
         // })
+
+        
+        
+        let agetype = document.querySelector("#age")
+
+        
+        
+
+
+         d3.select('#gender')
+             .on("change", function (d) {
+                let gendertype = document.querySelector("#gender").value
+                console.log("gender: ", gendertype)
+                 var newdata = data.filter(function(d){
+                     //console.log("d in filter: ", d)
+                     if (d.sex==gendertype){
+                         return d;
+                     } else if (gendertype==""){
+                         return d;
+                     }
+                 })
+                 //console.log("DATA NEW: ", newdata)
+                 createSymbolChart(newdata);  
+             });
+
+        d3.select('#survived')
+             .on("change", function (d) {
+                 let survivaltype = document.querySelector("#survived").value
+                 if (survivaltype == "Survived"){
+                     var newdata = data.filter(function(d){
+                         if (d.survived > 0){
+                             return d;
+                         } else if (survivaltype == "") {
+                             return d;
+                         }
+                     }) 
+                 } else { 
+                    var newdata = data.filter(function (d) {
+                         if (d.survived < 1) {
+                             return d;
+                         } else if (survivaltype == "") {
+                             return d;
+                         }
+                     }) 
+                 }
+                 createSymbolChart(newdata);
+             });
+
+        d3.select('#age')
+             .on("change", function (d) {
+                 let agegroup = document.querySelector("#age").value
+                 
+                 var newdata = data.filter(function (d) {
+                     //console.log("d in filter: ", d)
+                     if (d.age_category == agegroup) {
+                         return d;
+                     } else if (agegroup == "") {
+                         return d;
+                     }
+                 })
+                 createSymbolChart(newdata);
+             });
+
+
+
+
+
+         d3.select("#sort-btn")
+             .on("click", function (d) {
+                 sorted += 1;
+                 update(data, type, sorted)
+             })
         var selected = d3.selectAll("#selected")
         .append("text")
         .text("oooo")
         .attr("fill", "white")
+
+
 
         console.log("selected: ", selected)
 
@@ -41,6 +149,15 @@
 
 
 function createSymbolChart(data) {
+
+    d3.selectAll("circle")
+    .transition()
+    .duration(1000)
+    .remove()
+
+    d3.select("svg")
+    .remove()
+
             var height = 600;
             var width = 1000;
             var scale = 1.0;
@@ -313,9 +430,12 @@ function createSymbolChart(data) {
             function clicked(d, i) {
                 
 
-                if (d3.event.defaultPrevented) {
-                    return; // panning, not clicking
-                }
+                // if (d3.event.defaultPrevented) {
+                //     return; // panning, not clicking
+                // }
+                
+                
+
 
                 node = d3.select(this);
                 console.log("node0: ", node[0][0])
@@ -323,6 +443,12 @@ function createSymbolChart(data) {
                 var circle = node[0][0]
                 d3.select(circle)
                     .attr("id", "selected")
+                d3.selectAll("#selected")
+                    .append("text")
+                    .text("YAY!")
+                    .attr("font-size", 40)
+                    .attr("fill", "white")
+
                 console.log("HERE: ", circle)
                 // circle.attr("id", "selected")
                 var transform = getTransform(node, clickScale);
@@ -363,6 +489,8 @@ function createSymbolChart(data) {
 
             function reset() {
                 scale = 0.0;
+                //console.log(data)
+                createSymbolChart(data)
                 //container.attr("transform", "translate(0,0)scale(1,1)");
                 console.log(container)
 
