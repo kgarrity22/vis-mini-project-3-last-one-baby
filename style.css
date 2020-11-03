@@ -1,3 +1,4 @@
+  
 .hero-image {
   background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
   url("assets/titantic-hero.jpeg");
@@ -22,5 +23,115 @@
   transform: translate(-50%, -50%);
   color:white;
   font-size: 100px;
-  /*font-family: 'Staatliches', cursive; */
+  font-family: 'Cairo-Regular';
+  
+}
+@keyframes fadeInAnimation { 
+  0% { 
+      opacity: 0; 
+  } 
+  100% { 
+      opacity: 1; 
+   } 
+} 
+
+nav ul {
+  display: flex;
+  list-style-type: none;
+  flex-direction: row;
+  position: absolute;
+  width: 100%;
+  background-color: rgb(175, 211, 231);
+  justify-content: center;
+}
+
+body {
+  font-family: 'Cairo-Regular';
+}
+
+section .title{
+  font-family: 'Cairo-Regular';
+  font-size: 2rem;
+
+}
+
+.bars{
+  margin-top: 100px;
+}
+
+a:visited {color:rgb(80, 83, 83) ;}
+a { text-decoration: none;
+  color: rgb(80, 83, 83); 
+} 
+
+.about:link { 
+  color: rgb(175, 211, 231);
+  text-decoration: none;
+  font-family:"Cairo-Regular";
+}
+.bars:link { 
+  color: rgb(175, 211, 231);
+  text-decoration: none;
+  font-family:"Cairo-Regular";
+  color: inherit;  
+}
+.zoom:link { 
+  color: rgb(175, 211, 231);
+  text-decoration: none;
+  font-family:"Cairo-Regular";
+}
+nav li {
+  padding: 10px;
+
+}
+h1{
+  color: rgb(175, 211, 231);
+  text-align: left;
+
+}
+.row{
+display: flex;	
+}
+
+.row {flex-direction: column;}
+
+
+@media only screen and (min-width:768px) {
+  .col-1 {flex-basis: 8.33%;} /* width works too */
+  .col-2 {flex-basis: 16.66%;}
+  .col-3 {flex-basis: 25%;}
+  .col-4 {flex-basis: 33.33%;}
+  .col-5 {flex-basis: 41.66%;}
+  .col22 {flex-basis: 25%;}
+  .col-6 {flex-basis: 50%;}
+  .col-7 {flex-basis: 58.33%;}
+  .col-8 {flex-basis: 66.66%;}
+  .col-9 {flex-basis: 75%;}
+  .col-10 {flex-basis: 83.33%;}
+  .col-11 {flex-basis: 91.66%;}
+  .col-12 {flex-basis: 100%;}
+  .row {flex-direction: row;}
+  .row1 {flex-direction: column;} }
+
+.title{ 
+  color: rgb(25, 73, 100);
+  text-decoration: none;
+  padding: 2px;
+  font-family:"Cairo-Black";
+}
+.box1 {
+  justify-content: center;
+  margin-left: 10px;
+  display: flex;
+  list-style-type: none;
+  flex-direction: row;
+
+}
+
+.insidebox{
+  margin-right: 20px;
+}
+
+.myChart{
+  margin-left: 150px;
 }
