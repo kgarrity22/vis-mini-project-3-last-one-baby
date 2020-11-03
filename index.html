@@ -537,25 +537,32 @@
                 .on("click", clicked)
                 .on("mouseover", function (d) {
                     console.log("over: ", d)
-                    d3.select()
+                    d3.select(this[1])
+                    .innerHTML("text")
+                    
+
+                    console.log(d3.select(this))
+                
+                    
 
                 })
-            d3.selectAll('g.item')
-                .append('text')
-                .text(function (d, i) {
-                    return i + 1;
-                });
+            // d3.selectAll('g')
+            //     .append('text')
+            //     .text(function (d, i) {
+            //         return "Hey!"
+            //     });
 
-            dots.append("text")
+            dots.selectAll("#selected")
+                .append("text")
                 .text(function (d) {
                     //console.log("appending text", d)
                     return d.pclass
                 })
                 .attr("x", function (d, i) {
-                    10 * i;
+                    i*20;
                 })
                 .attr("y", function (d, i) {
-                    10 * i;
+                    10*i;
                 })
                 .attr("fill", "white")
 
