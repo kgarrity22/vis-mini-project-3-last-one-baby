@@ -22,10 +22,6 @@
         <div class="row">
             <div class="column">
                 <h1>About the Project</h1>
-                <li>A brief project information: motivations, design rationale for visual encoding decisions and
-                    interaction techniques, takeaways, etc.</li>
-                <li>A brief info about the design and development process: alternatives tried (e.g., sketches),
-                    struggles, lessoned learned. Also mention how the workload was distributed among team members.</li>
                     <h3>Motivations, Encoding Decisions, and Interactions</h3>
                     <p>
                         Everyone is familiar with the historic sinking of the Titanic, the luxury cruiseliner that never completed its 
@@ -54,8 +50,44 @@
                     <h3>Takeaways</h3>
                     <p>
                         Unsurprisingly, the proportion and raw number of those who perished was related to their class; the highest number of victims were 
-                        in third class, while the fewest were in first. 
+                        in third class, while the fewest were in first. The familiar phrase "Women and children first" also proved to be true; first and second 
+                        class women had survival rates of 96% and 89%, respectively. However, only half of third class women survived. This emphasizes the 
+                        privilege that comes with class. Individuals who were less than 30 years of age were, regardless of class, the most likely to survive 
+                        as well. Unfortunately, as was consistent with earlier findings, these younger populations were more adversley affected if they had 
+                        a lower class ticket; the proportion of young second class passengers who lost their lives (50%) was roughly doubly that of first class 
+                        passengers (27%). In the same way, the proportion of young 3rd class passengers (71%) who perished was roughly triple that of first class. 
+                        <br><br>
+                        What we did not expect to find was that the proportion of second class males who perished was roughly equivalent to the proportion of 3rd 
+                        class males at 85.4% and 84.8%, respectively. This is the only aggregate statistic that bucks the trend of a higher class leading to 
+                        a more likely chance of survival. Another interesting observation is that the raw number of first class passengers who survived is roughly 
+                        double that of the secod and third classes combined. This is significant because there were substantially more second and third class passengers 
+                        on board.
                     </p>
+                    <h3>Design, Struggles, and Development</h3>
+                    <p>
+                        We decided early that it would be best to implement a stacked bar chart when designing our visualization. The stacked bar chart is 
+                        particularly effective when comparing the proportional data as it clearly allows you to compare with relative ease each class's survival 
+                        rate by age or sex. Similarly, it is also effective at the macro level when representing raw totals. It enables the user to clearly 
+                        see the scale of the total loss of life. The point plot was the best possible solution for the problem of allowing the user to learn more 
+                        about specific individuals. It also adds a more personal human element to the visualization. For this idiom, we also considered using a pie 
+                        chart since on the surface it provides relative information about each class's total number of survivors, We felt that this representation 
+                        detracts from the idea of treating these data points as individuals. Other idioms, such as slope charts and scatter plots, were also quickly 
+                        dismissed alternatives since they do not allow for as clear encoding of multiple categorical attributes.
+                        <br><br> 
+                        <img src="AltVis.jpeg" alt="Alternate Vis">
+                        <br><br>
+                        Something we struggled with was figuring out how to include text within the points in the point plot. d3 poses a variety of syntactical obstacles that 
+                        we had to overcome in order to get our desired visualization. Another struggle with this particular dataset was incomplete data. 
+                        Information was collected regarding a passenger’s home or destination (or sometimes both), and though it would have been interesting to 
+                        see what percentage or how many passengers came from or were going to a particular place, the data was formatted in multiple inconsistent 
+                        formats. This ultimately forced us to abandon some of our original questions since individually cleansing 1300 records would not have been 
+                        time efficient. Also, since only half the records had such information, it is unlikely we would have been able to say anything substantial 
+                        regarding homes or destinations in the final analysis. In the end, we learned that certain visualizations do a substantially better job of 
+                        combining categorical data. We also found that enabling the user to perform exploratory analysis through filters and selections makes for 
+                        a visualization feel very powerful. As a team, work was divided such that some members focused on developing the actual code that creates 
+                        the visualizations, while others focused on the design of the presentation site and the "about" write-up.
+                    </p>
+
             </div>
         </div>
     </div>
