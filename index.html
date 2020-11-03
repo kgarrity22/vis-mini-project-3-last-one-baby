@@ -345,9 +345,11 @@
             //     .selectAll("circle")
             //     .data(circles)
 
-            var div = d3.select(".tooltiptext").append("div")	
+            var div = d3.selectAll("").append("div")	
             .attr("class", "tooltip")				
             .style("opacity", 0);
+
+            
 
             var dots = container.append("g")
                 .attr("id", "circles")
@@ -541,6 +543,20 @@
                 })
                 .on("click", clicked)
                 .on("mouseover", function (d) {
+                    var texts = svg.selectAll("text")
+                        .data(data)
+                        .enter()
+                        .append('text')
+                        .text(function (d){
+                            return d.sex;
+                        })
+                        .attr("x", function (d, i){
+                            i *10 ;
+                        })
+                        .attr("y", function(d, i){
+                            i * 10;
+                        })
+                    console.log("text is: ", texts)
                     console.log("over: ", d)
                     div.transition()
                         .duration(200)
@@ -555,25 +571,60 @@
                         .style("opacity", 0);
                 });
                 
-            d3.selectAll('g.item')
-                .append('text')
-                .text(function (d, i) {
-                    return i + 1;
-                });
-
-            // dots.append("text")
             
+
+            dots.append("text")
+            
+                .text(function (d) {
+                    //console.log("appending text", d)
+                    return d.pclass
+                })
+                .attr("cx", function (d, i) {
+                    10 * i;
+                })
+                .attr("cy", function (d, i) {
+                    10 * i;
+                })
+                .attr("fill", "black")
+                .attr("transform", function (d) {
+                    return (
+                        "transform", "translate(" + 100 + "," + 100 + ")scale(" + 33.0 + ")"
+                    );
+                })
+
+            // function getTextBox(selection) {
+            //     selection
+            //         .each(function (d) {
+            //             d.bbox = this
+            //                 .getBBox();
+            //         })
+            //         ;
+            // }
+            // zoom to show a bounding box, with optional additional padding as percentage of box size
+
+
+            // circleLabels = dots
+            //     .selectAll("g")
+            //     .data(data)
+            //     .enter()
+            //     .append("g")
+            //     .attr("class", "circleLabel")
+            //     .attr("transform", function (d) {
+
+            //         return (
+            //             "transform", "translate(" + 100 + "," + 100 + ")scale(" + 33.0 + ")"
+            //         );
+            //     })
+            // circleLabels
+            //     .append("text")
+            //     .attr("class", "circleName")
+            //     .style("text-anchor", "middle")
+            //     .attr("dx", 0)
+            //     .attr("dy", 0)
             //     .text(function (d) {
-            //         //console.log("appending text", d)
             //         return d.pclass
             //     })
-            //     .attr("cx", function (d, i) {
-            //         10 * i;
-            //     })
-            //     .attr("cy", function (d, i) {
-            //         10 * i;
-            //     })
-            //     .attr("fill", "black")
+            //     .call(getTextBox);
 
 
             bbox = container.node().getBBox();
@@ -599,6 +650,7 @@
             }
 
             function clicked(d, i) {
+                
 
 
                 // if (d3.event.defaultPrevented) {
@@ -623,6 +675,17 @@
                 console.log(transform)
                 container.transition().duration(1000)
                     .attr("transform", "translate(" + transform.translate + ")scale(" + transform.scale + ")");
+                
+                console.log("THIS: ", this)
+                var texts = d3.select(this)
+                .transition()
+                .duration(1000)
+                .append("text")
+                .text("YUP")
+                .attr(("transform", "translate(" + transform.translate + ")scale(" + transform.scale + ")"))
+
+                console.log(texts)
+
                 console.log("container: ", container)
                 zoom.scale(transform.scale)
                     .translate(transform.translate);
