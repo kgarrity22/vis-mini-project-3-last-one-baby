@@ -62,7 +62,7 @@
                 console.log("gender: ", gendertype)
                  var newdata = data.filter(function(d){
                      //console.log("d in filter: ", d)
-                     if (d.sex==gendertype){
+                     if (d.sex.toLowerCase()==gendertype){
                          return d;
                      } else if (gendertype==""){
                          return d;
