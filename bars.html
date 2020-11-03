@@ -1,0 +1,163 @@
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="http://dimplejs.org/dist/dimple.v2.3.0.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Aclonica&family=Six+Caps&display=swap" rel="stylesheet">
+<script src="//d3js.org/d3.v3.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/milligram/1.4.1/milligram.css">
+<link rel="stylesheet" href="style.css">
+
+<html>
+
+    <div class="hero-image">
+        <div class="hero-text">
+            <header>Titanic: Sink or Swim?</header>
+        </div>
+    </div>
+        <nav>
+            <ul>
+                <li>
+                    <a class="backtitle" href="index.html" top:30px>
+                    <i class="fas fa-user-circle"></i> Go Back</a>
+                </li>
+            </ul>
+        </nav>
+    <br>
+    <section id="bars">
+        <div class="bigbox1">
+            <h1>Stacked Bar Chart</h1>
+            <div class="myChart"> </div>
+            <div class="box1">
+                <div class="insidebox">
+                    Category
+                    <br>
+                    <select id="option_1" class="input" name="category" size="3">
+                        <option value="none" selected>None</option>
+                        <option value="sex">by Sex</option>
+                        <option value="age">by Age</option>
+                    </select>
+                    <br>
+                </div>
+                <div class="insidebox2">
+                    Measure
+                    <br>
+                    <select id="option_2" class="input" name="measure" size="2">
+                        <option value="percentage" selected>Percentage</option>
+                        <option value="count">Count</option>
+                    </select>  
+                </div>       
+        </div>
+
+    </section>
+
+    <script type="text/javascript">
+        function draw(data) {
+            data.forEach(function (d) {
+                d.Count = +1;
+                d.Survived = ["Perished", "Survived"][d.survived];
+                d.Pclass = ["First", "Second", "Third"][d.pclass - 1];
+                d.sex = d.sex[0].toUpperCase() + d.sex.substring(1);
+            });
+
+
+
+            var svg = dimple.newSvg(".myChart", 1000, 600);
+            svg.attr("class", "chart");
+            var myChart = new dimple.chart(svg, data);
+
+            var category = d3.select("#option_1").node().value;
+            if (category === "sex") {
+                var x = myChart.addCategoryAxis("x", ["pclass", "sex"]);
+                x.addGroupOrderRule(["Female", "Male"]);
+            }
+            else if (category === "age") {
+                var x = myChart.addCategoryAxis("x", ["pclass", "age_category"])
+                x.addGroupOrderRule(["Over 30", "30 and under", "no age"]);
+
+            }
+            else if (category === "none") {
+                var x = myChart.addCategoryAxis("x", ["pclass"]);
+            }
+
+
+            x.addOrderRule(["First", "Second", "Third"]);
+            x.title = "Passenger Class";
+
+            var measure = d3.select("#option_2").node().value;
+            if (measure === "count") {
+                var y = myChart.addMeasureAxis("y", "Count");
+                y.title = "Number of Passengers";
+            }
+            else if (measure === "percentage") {
+                var y = myChart.addPctAxis("y", "Count");
+                y.title = "Percentage of Passengers";
+            }
+
+
+            var mySeries = myChart.addSeries("Survived", dimple.plot.bar);
+            mySeries.addOrderRule(["Survived", "Perished"]);
+            myChart.assignColor("Perished", "#e41a1c", "white");
+            myChart.assignColor("Survived", "#377eb8", "white");
+            var myLegend = myChart.addLegend(10, 10, 500, 10, "right");
+
+
+
+
+            mySeries.getTooltipText = function (e) {
+                console.log(e);
+                if (measure === "percentage") {
+                    return [e.aggField, e.xField[1],
+                    e.cx + " Class",
+                    "Percentage: " + Math.round(e.height * 1000) / 10 + "%"];
+
+                }
+                else if (measure === "count") {
+                    return [e.aggField, e.xField[1],
+                    e.cx + " Class",
+                    "Count: " + e.yCount];
+                }
+            };
+
+
+            myChart.draw(1000);
+
+
+
+            mySeries.afterDraw = function (shape, data) {
+                var myShape = d3.select(shape),
+                    rect = {
+                        x: parseFloat(myShape.attr("x")),
+                        y: parseFloat(myShape.attr("y")),
+                        width: parseFloat(myShape.attr("width")),
+                        height: parseFloat(myShape.attr("height"))
+                    };
+
+
+
+                svg.append("text")
+                    .attr("x", rect.x + rect.width / 2)
+                    .attr("y", myChart._heightPixels() + 50)
+                    .style("text-anchor", "middle")
+                    .style("font-size", "11px")
+                    .style("opacity", 1)
+                    .style("fill", "black")
+                    // Prevent text cursor on hover and allow tooltips
+                    .style("pointer-events", "none")
+                    .text(data.xField[1]);
+            };
+
+        };
+
+
+
+        function updateChart() {
+                d3.select(".chart").remove();
+                d3.select("h3").remove();
+                d3.csv("titanic passenger list (2).csv", draw);
+            };
+
+            d3.selectAll(".input").on("click", updateChart);
+            d3.csv("titanic passenger list (2).csv", draw); 
+</script>
+
+</body>
+
+</html>

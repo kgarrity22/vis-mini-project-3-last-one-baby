@@ -146,3 +146,10 @@ display: flex;
 .myChart{
   margin-left: 150px;
 }
+#about{
+  margin-top: 50px;
+}
+#aboutInfo{
+  margin-left: 20px;
+  margin-right: 20px;
+}
