@@ -46,11 +46,11 @@ nav ul {
 }
 
 body {
-  font-family: 'Cairo-Regular';
+  font-family: 'Cairo', sans-serif;
 }
 
 section .title{
-  font-family: 'Cairo-Regular';
+  font-family: 'Cairo', sans-serif;
   font-size: 2rem;
 
 }
@@ -65,20 +65,20 @@ a { text-decoration: none;
 } 
 
 .about:link { 
-  color: rgb(175, 211, 231);
+  color: rgb(80, 83, 83);
   text-decoration: none;
-  font-family:"Cairo-Regular";
+  font-family: 'Cairo', sans-serif;
 }
 .bars:link { 
-  color: rgb(175, 211, 231);
+  color: rgb(80, 83, 83);
   text-decoration: none;
-  font-family:"Cairo-Regular";
+  font-family: 'Cairo', sans-serif;
   color: inherit;  
 }
 .zoom:link { 
-  color: rgb(175, 211, 231);
+  color: rgb(80, 83, 83);
   text-decoration: none;
-  font-family:"Cairo-Regular";
+  font-family: 'Cairo', sans-serif;
 }
 nav li {
   padding: 10px;
@@ -117,7 +117,7 @@ display: flex;
   color: rgb(25, 73, 100);
   text-decoration: none;
   padding: 2px;
-  font-family:"Cairo-Black";
+  font-family: 'Cairo', sans-serif;
 }
 .bigbox1{
   margin-top: 50px;
